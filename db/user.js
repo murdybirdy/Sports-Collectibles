@@ -21,9 +21,21 @@ async function getUserById(id) {
   }
 }
 
+async function createUser(username, password) {
+  try {
+    const query = 'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *;';
+    const values = [username, password];
+    const result = await client.query(query, values);
+
+    return result.rows[0];
+  } catch (error) {
+    throw new Error('Error creating user.');
+  }
+}
+
 module.exports = {
   // add your database adapter fns here
   getAllUsers,
-  getUserById
-
+  getUserById,
+  createUser
 };
