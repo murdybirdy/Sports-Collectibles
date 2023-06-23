@@ -107,5 +107,5 @@ module.exports = {
   getProductById,
   addProduct,
   editProduct,
-  removeProduct
+  removeProduct,
 };

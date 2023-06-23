@@ -7,7 +7,7 @@ const DB_NAME = 'sporty';
 const DB_URL =
   process.env.DATABASE_URL || `postgres://localhost:5432/${DB_NAME}`;
 
-let client;
+const client = new Client(DB_URL);
 
 // github actions client config
   // if (process.env.CI) {
@@ -20,7 +20,6 @@ let client;
   //   });
   // } else {
   // local / heroku client config
-  client = new Client(DB_URL);
   // } 
 
 module.exports = client;

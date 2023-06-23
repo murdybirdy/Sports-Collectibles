@@ -1,8 +1,13 @@
+// declare your model imports here
+// for example, User
 const {
-  client,
-  // declare your model imports here
-  // for example, User
+  addProduct
 } = require('./');
+const client = require('./client');
+
+const staticData = require('./staticData');
+const productsToCreate = staticData.productsList();
+const usersToCreate = staticData.usersList();
 
 async function buildTables() {
   try {
@@ -29,7 +34,7 @@ async function buildTables() {
           id SERIAL PRIMARY KEY,
           name VARCHAR(255) UNIQUE NOT NULL,
           category VARCHAR(255) NOT NULL,
-          description VARCHAR(255) NOT NULL,
+          description VARCHAR(500) NOT NULL,
           price INTEGER NOT NULL
         );
       `);
@@ -51,10 +56,18 @@ async function buildTables() {
 
 async function populateInitialData() {
   try {
+    console.log("Starting to create products...");
+    const products = await Promise.all(productsToCreate.map(addProduct));
+    console.log("Products created:", products);
+
+    console.log("Starting to create users...");
+    const users = await Promise.all(usersToCreate.map());
+    console.log("Users created:", users);
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
     // const user1 = await User.createUser({ ...user info goes here... })
   } catch (error) {
+    console.log("Error populating Initial Data!", error);
     throw error;
   }
 }
