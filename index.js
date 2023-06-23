@@ -16,7 +16,7 @@ server.use(express.json());
 
 // here's our static files
 const path = require('path');
-server.use(express.static(path.join(__dirname, 'build')));
+server.use(express.static(path.join(__dirname, 'build')));  // requests for imgs/files that won't change, server can grab from the build folder
 
 // here's our API
 server.use('/api', require('./api'));

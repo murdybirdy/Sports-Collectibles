@@ -31,6 +31,16 @@ async function getProductById(id) {
   } 
 };
 
+async function attachProductsToCart(cart) {
+  try {
+    const { rows: productInCart } = await client.query(/*sql*/`
+      SELECT products.*
+    `)
+  } catch (error) {
+    throw error;
+  }
+}
+
 // For Administrator:
 async function addProduct({ name, category, description, price }) {
   try {

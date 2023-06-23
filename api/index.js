@@ -13,5 +13,8 @@ apiRouter.get('/health', (req, res, next) => {
 });
 
 // place your routers here
+  // /users
+  // /products
+  // /cart
 
 module.exports = apiRouter;
