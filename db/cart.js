@@ -53,7 +53,23 @@ async function deleteFromCart(userId, productId){
         throw error;
     }
 }
-
+async function updateCart( userId, productId, updatedQuantity ){
+    try {
+        if (userId){
+            const {rows: updateProduct } = await client.query(
+                `UPDATE cart
+                SET quanity = $1
+                WHERE userId = $2 AND productId = $3
+                `, [updatedQuantity, userId, productId]);
+                return updateProduct;
+        }else {
+            throw new Error ("User must be logged in to edit the cart")
+        }
+    }catch (error){
+        console.log("error editing the cart", error)
+        throw error;
+    }
+}
 
 
 
@@ -70,4 +86,5 @@ async function deleteFromCart(userId, productId){
         shoppingCart, 
         addToCart, 
         deleteFromCart,
+        updateCart
     }
