@@ -12,7 +12,7 @@ apiRouter.get('/health', (req, res, next) => {
   });
 });
 apiRouter.get("/unknown", async (req, res, next)=> {
-  res.status(404).ssend({message:"404 not found"})
+  res.status(404).send({message:"404 not found"})
 })
 
 //Router: user 
@@ -22,7 +22,7 @@ router.use('/users', usersRouter);
 //Router: products 
 const productsRouter = require('./products');
 router.use('/products', productsRouter);
-
+//Router: cart
 const cartRouter = require('./cart');
 router.use('/cart', cartRouter);
 
