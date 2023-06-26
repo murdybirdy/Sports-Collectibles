@@ -37,7 +37,22 @@ const client = require('./client');
         throw error;
     }
 }
-
+async function deleteFromCart(userId, productId){
+    try {
+        if (userId){
+            const {rows: deleteProduct} = await client.query(`
+                DELETE FROM cart
+                WHERE userId = $1 AND productId = $2 
+                `, [userId, productId]);
+                return deleteProduct;
+        }else{
+            throw new Error ("User must be logged in to delete items");
+        }
+    }catch (error){
+        console.log("error deleting from cart", error)
+        throw error;
+    }
+}
 
 
 
@@ -54,4 +69,5 @@ const client = require('./client');
     module.exports ={
         shoppingCart, 
         addToCart, 
+        deleteFromCart,
     }
