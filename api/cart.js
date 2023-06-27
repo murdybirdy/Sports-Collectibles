@@ -12,12 +12,12 @@ router.use((req, res, next) => {
 
 const userCart = async (id) => {
     //get the cart from the db
-    const cartItems = await cartItems({
+    const cartItems = await cartItems.findAll({
         where: {
             userId: id,
         },
         include:[{
-            product: product,
+            item: product,
         }]
     })
     return cartItems 
@@ -28,9 +28,15 @@ const userCart = async (id) => {
 
 router.get('/', async (res, req, next)=> {
     if (!req.user){
-return (error)
+return res.statusCode(401).json({error: 'User Not Authenticated'});
     }else {
-        const cartItems = await getCart
+        try{
+        const cartItems = await userCart(req.user.id);
+        //res.json-sends cartItems array back to the client as a json response
+        res.json(cartItems)
+        } catch (error){
+            next(error)
+        }
     }
 })
 
