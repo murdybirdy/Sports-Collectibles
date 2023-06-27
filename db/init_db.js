@@ -16,6 +16,7 @@ async function buildTables() {
 
     // drop tables in correct order
       await client.query(/*sql*/`
+        DROP TABLE IF EXISTS cartItems;
         DROP TABLE IF EXISTS cart;
         DROP TABLE IF EXISTS products;
         DROP TABLE IF EXISTS users;
@@ -49,6 +50,13 @@ async function buildTables() {
           UNIQUE ("userId", "productId")
         );
       `);
+      await client.query(/*slq*/`
+      CREATE TABLE cartItems(
+        id SERIAL PRIMARY KEY,
+        "cartId" INTEGER REFERENCES cart(id),
+        "productId" INTEGER REFERENCES product(id),
+      );
+      `)
 
   } catch (error) {
     throw error;

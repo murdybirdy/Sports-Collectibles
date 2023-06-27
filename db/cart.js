@@ -23,11 +23,11 @@ const client = require('./client');
     async function addToCart(userId, product ){
         try{
             if(userId){
-        const {rows: product }= await client.query(`
+        const {rows: addProduct }= await client.query(`
         INSERT INTO cart (userId, productId)
         VAlUES ($1, $2)
         `, [userId, product])
-        return updatedCart;
+        return addProduct;
             } else{
                 throw new Error("User must be logged in too add items to cart")
             }
@@ -81,6 +81,13 @@ async function updateCart( userId, productId, updatedQuantity ){
 //get cart total product/price 
 //check out 
 // user authentication 
+// wishlist??
+
+//notes from class 
+//user.........products_cart
+//1.........prod1.........cart1
+//1.........prod2.........cart1
+//1.........prod1.........cart2
 
     module.exports ={
         shoppingCart, 
