@@ -48,7 +48,7 @@ async function getUserById(id) {
   }
 }
 
-async function createUser(username, password) {
+async function createUser({ username, password }) {
   try {
     const query = 'INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *;';
     const values = [username, password];
