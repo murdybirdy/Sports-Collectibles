@@ -28,6 +28,7 @@ const userCart = async (id) => {
 
 router.get('/', async (res, req, next)=> {
     if (!req.user){
+        //error handler for non authenitacted user 
 return res.statusCode(401).json({error: 'User Not Authenticated'});
     }else {
         try{
@@ -40,7 +41,25 @@ return res.statusCode(401).json({error: 'User Not Authenticated'});
     }
 })
 
-
+//Add products to the cart //Post // do we want to make a non logged in shopper experience?
+router.post('/', authenticateUser, async (req, res, next) => {
+    try {
+      const { itemId, quantity } = req.body;
+  
+      // Add the item to the cart
+      const newItem = await cart.create({
+        userId: req.user.id,
+        itemId,
+        quantity,
+      });
+  
+      res.json(newItem);
+    } catch (error) {
+      next(error);
+    }
+  });
+  
+// DELETE items from cart 
 
 
 module.exports = router; 
