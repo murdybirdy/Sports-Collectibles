@@ -42,7 +42,7 @@ return res.statusCode(401).json({error: 'User Not Authenticated'});
 })
 
 //Add products to the cart //Post // do we want to make a non logged in shopper experience?
-router.post('/', authenticateUser, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try {
       const { itemId, quantity } = req.body;
   
@@ -60,6 +60,24 @@ router.post('/', authenticateUser, async (req, res, next) => {
   });
   
 // DELETE items from cart 
+// need middleware for user authentication if we choose too 
+router.delete('/itemId', async (req, res, next ) =>{
+    try {
+        const {itemId} = req.params;
+        const deleteItem = await cart.delete({
+            where:{
+                id:itemId,
+                userId: req.user.id
+            }
+        });
+         if(deleteItem === 0) {
+            return (error)
+         }
+         res.json({ message:'Item deleted from cart'})
+    }catch (error){
+        next (error)
+    }
+})
 
 
 module.exports = router; 
