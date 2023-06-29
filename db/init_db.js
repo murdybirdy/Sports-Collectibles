@@ -4,7 +4,9 @@ const {
   addProduct,
   createUser,
   addToCart,
-  getAllProducts
+  getAllProducts,
+  getCartByUser,
+  shoppingCart
 } = require('./');
 const client = require('./client');
 
@@ -76,11 +78,12 @@ async function populateInitialData() {
     console.log("Users created:", users);
 
     console.log("Starting to add products to cart...");
-    console.log(users[0].id, products[0].id);
-    const cart = await addToCart(users[0].id, products[0].id, 1);
+    const cart = [await addToCart(users[0].id, products[0].id, 1), await addToCart(users[0].id, products[0].id, 1)];
     console.log("Products added:", cart);
 
-    console.log(await getAllProducts());
+    console.log("Getting cart by userId...");
+    const userCart = await shoppingCart(users[0].id);
+    console.log("Cart:", userCart);
     // create useful starting data by leveraging your
     // Model.method() adapters to seed your db, for example:
     // const user1 = await User.createUser({ ...user info goes here... })
