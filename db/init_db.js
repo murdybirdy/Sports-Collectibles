@@ -48,17 +48,17 @@ async function buildTables() {
           id SERIAL PRIMARY KEY,
           "userId" INTEGER REFERENCES users(id),
           "productId" INTEGER REFERENCES products(id),
-          quantity INTEGER,
-          UNIQUE ("userId", "productId")
+          quantity INTEGER
         );
       `);
-      await client.query(/*slq*/`
-      CREATE TABLE cartItems(
-        id SERIAL PRIMARY KEY,
-        "cartId" INTEGER REFERENCES cart(id),
-        "productId" INTEGER REFERENCES product(id),
-      );
-      `)
+
+      // await client.query(/*sql*/`
+      //   CREATE TABLE cartItems(
+      //     id SERIAL PRIMARY KEY,
+      //     "cartId" INTEGER REFERENCES cart(id),
+      //     "productId" INTEGER REFERENCES products(id),
+      //   );
+      // `);
 
   } catch (error) {
     throw error;
@@ -75,9 +75,10 @@ async function populateInitialData() {
     const users = await Promise.all(usersToCreate.map(createUser));
     console.log("Users created:", users);
 
-    // console.log("starting to add products to cart...");
-    // const cart = await addToCart(users[0].id, products[0]);
-    // console.log("Products added:", cart);
+    console.log("starting to add products to cart...");
+    console.log(users[0].id, products[0].id);
+    const cart = await addToCart(users[0].id, products[0].id);
+    console.log("Products added:", cart);
 
     console.log(await getAllProducts());
     // create useful starting data by leveraging your

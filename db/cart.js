@@ -1,42 +1,46 @@
 const client = require('./client');
 
-    async function shoppingCart(userId) {
-    try{
-        if(userId){
-    const {rows: cart} = await client.query(`
-    SELECT products
-    FROM cart
-    WHERE userId = 1$
-            `, [userId])
-            return cart;
-        }else{
+async function shoppingCart(userId) {
+  try{
+    if(userId){
+      const {rows: cart} = await client.query(`
+        SELECT products
+        FROM cart
+        WHERE userId = 1$
+      `, [userId])
+      
+      return cart;
+    
+    } else {
+      return[];
 
-            return[]
-        }
-        }catch (error){
-            console.log("error getting cart", error)
-            throw error;
-        }
     }
-
-
-    async function addToCart(userId, product ){
-        try{
-            if(userId){
-        const {rows: addProduct }= await client.query(`
-        INSERT INTO cart (userId, productId)
-        VAlUES ($1, $2)
-        `, [userId, product])
-        return addProduct;
-            } else{
-                throw new Error("User must be logged in too add items to cart")
-            }
-
-    } catch (error){
-        console.log("error adding to cart", error)
-        throw error;
-    }
+  } catch (error) {
+    console.log("error getting cart", error)
+    throw error;
+  }
 }
+
+async function addToCart(userId, productId ){
+  try {
+    if(userId) {
+      const { rows: [addProduct] } = await client.query(`
+        INSERT INTO cart ("userId", "productId")
+        VALUES ($1, $2)
+      `, [userId, productId]);
+
+      return addProduct;
+
+    } else {
+      throw new Error("User must be logged in too add items to cart");
+    }
+
+  } catch (error){
+    console.log("error adding to cart", error)
+    throw error;
+  }
+}
+
 async function deleteFromCart(userId, productId){
     try {
         if (userId){
@@ -53,6 +57,7 @@ async function deleteFromCart(userId, productId){
         throw error;
     }
 }
+
 async function updateCart( userId, productId, updatedQuantity ){
     try {
         if (userId){
