@@ -17,18 +17,21 @@ apiRouter.get("/unknown", async (req, res, next)=> {
 
 //Router: user 
 const usersRouter = require('./users');
-router.use('/users', usersRouter);
+apiRouter.use('/users', usersRouter);
 
 //Router: products 
 const productsRouter = require('./products');
-router.use('/products', productsRouter);
+apiRouter.use('/products', productsRouter);
 
 //Router: cart
-const cartRouter = require('./cart');
-router.use('/cart', cartRouter);
+// const cartRouter = require('./cart');
+// apiRouter.use('/cart', cartRouter);
 
 
-
+//** ADD ERROR HANDLER HERE */
+apiRouter.use((error, req, res, next) => {
+  res.send(error);
+})
 
 // place your routers here
   // /users
