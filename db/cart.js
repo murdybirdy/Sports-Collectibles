@@ -27,12 +27,13 @@ async function addToCart(userId, productId ){
       const { rows: [addProduct] } = await client.query(`
         INSERT INTO cart ("userId", "productId")
         VALUES ($1, $2)
+        RETURNING *
       `, [userId, productId]);
 
       return addProduct;
 
     } else {
-      throw new Error("User must be logged in too add items to cart");
+      throw new Error("User must be logged in to add items to cart");
     }
 
   } catch (error){
@@ -63,7 +64,7 @@ async function updateCart( userId, productId, updatedQuantity ){
         if (userId){
             const {rows: updateProduct } = await client.query(
                 `UPDATE cart
-                SET quanity = $1
+                SET quantity = $1
                 WHERE userId = $2 AND productId = $3
                 `, [updatedQuantity, userId, productId]);
                 return updateProduct;
