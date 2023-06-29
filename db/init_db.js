@@ -75,9 +75,9 @@ async function populateInitialData() {
     const users = await Promise.all(usersToCreate.map(createUser));
     console.log("Users created:", users);
 
-    console.log("starting to add products to cart...");
+    console.log("Starting to add products to cart...");
     console.log(users[0].id, products[0].id);
-    const cart = await addToCart(users[0].id, products[0].id);
+    const cart = await addToCart(users[0].id, products[0].id, 1);
     console.log("Products added:", cart);
 
     console.log(await getAllProducts());
