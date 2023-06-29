@@ -10,8 +10,10 @@ const {
 
 // GET /api/products
 router.get('/', async (req, res, next) => {
+  console.log("made it to products page")
   try {
     const allProducts = await getAllProducts();
+    console.log("products:", allProducts);
     res.send(allProducts);
 
   } catch (error) {
