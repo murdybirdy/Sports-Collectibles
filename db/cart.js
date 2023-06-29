@@ -21,14 +21,14 @@ async function shoppingCart(userId) {
   }
 }
 
-async function addToCart(userId, productId ){
+async function addToCart(userId, productId, quantity){
   try {
     if(userId) {
       const { rows: [addProduct] } = await client.query(`
-        INSERT INTO cart ("userId", "productId")
-        VALUES ($1, $2)
+        INSERT INTO cart ("userId", "productId", "quantity")
+        VALUES ($1, $2, $3)
         RETURNING *
-      `, [userId, productId]);
+      `, [userId, productId, quantity]);
 
       return addProduct;
 
