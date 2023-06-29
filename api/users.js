@@ -9,8 +9,10 @@ const {
 
 //GET /api/users
 router.get('/', async (req, res, next) => {
+  console.log("Made it to users page");
     try {
         const allUsers = await getAllUsers();
+        console.log("users:", allUsers);
         res.send(allUsers);
     } catch (error) {
         next(error);
