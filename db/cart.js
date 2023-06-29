@@ -2,21 +2,23 @@ const client = require('./client');
 
 async function shoppingCart(userId) {
   try{
-    if(userId){
-      const {rows: cart} = await client.query(`
-        SELECT products
+    if (userId) {
+      const { rows } = await client.query(`
+        SELECT cart.*, products.name, products.category, products.description, products.price
         FROM cart
-        WHERE userId = 1$
+        INNER JOIN products
+        ON cart."productId" = products.id
+        WHERE cart."userId" = $1
       `, [userId])
       
-      return cart;
+      return rows;
     
     } else {
       return[];
 
     }
   } catch (error) {
-    console.log("error getting cart", error)
+    console.log("error getting cart by user", error)
     throw error;
   }
 }
@@ -78,7 +80,23 @@ async function updateCart( userId, productId, updatedQuantity ){
 }
 
 
+async function getCartByUser( userId ) {
+  try {
+    const { rows } = await client.query(/*sql*/`
+      SELECT cart.*, products.name, products.category, products.description, products.price
+      FROM cart
+      INNER JOIN products
+      ON cart."productId" = products.id
+      WHERE cart."userId" = $1
+    `, [ userId ]);
 
+    return rows;
+
+  } catch (error) {
+    console.log("Error getting cart by user!");
+    throw error;
+  }
+}
 
 // user logged in to cart vs non logged in user        
 //add to cart
@@ -99,5 +117,6 @@ async function updateCart( userId, productId, updatedQuantity ){
         shoppingCart, 
         addToCart, 
         deleteFromCart,
-        updateCart
+        updateCart,
+        getCartByUser
     }
