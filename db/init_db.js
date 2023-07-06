@@ -6,12 +6,14 @@ const {
   addToCart,
   getAllProducts,
   getProductById,
-  getCartByUser,
   userShoppingCart,
   deleteFromCart,
   showAllCartItems,
   editProduct,
-  removeProduct
+  removeProduct,
+  getAllUsers,
+  getUser,
+  getUserById
 } = require('./');
 
 const client = require('./client');
@@ -92,7 +94,7 @@ async function populateInitialData() {
         price: 1000000000
       }));
 
-    console.log("Testing removing a product by Id:");
+    console.log("Testing removing a product by Id: 1");
     await removeProduct(1);
     console.log("Displaying all products after removing that one:", await getAllProducts());
     
@@ -102,6 +104,12 @@ async function populateInitialData() {
     console.log("Starting to create users...");
     const users = await Promise.all(usersToCreate.map(createUser));
     console.log("Users created:", users);
+
+    console.log("Getting user by username/password:", await getUser({username: 'a', password: 'password'}));
+    console.log("Getting user by Id:", await getUserById(users[0].id));
+    console.log("Getting user with incorrect password:", await getUser({username: 'a', password: 'wrongpassword'}));
+    console.log("Getting user with nonexistent Id:", await getUserById(5000));
+    console.log("Getting all users:", await getAllUsers());
     
   // Cart Tests:
     console.log("Starting to add products to cart...");
