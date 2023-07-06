@@ -31,8 +31,9 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <h1>Hello, World!</h1>
-      <p>API Status: {APIHealth}</p>
+      <h1 className='frontPageTitle'>SPORTY</h1>
+      
+      
 
       <Router>
         <Routes>

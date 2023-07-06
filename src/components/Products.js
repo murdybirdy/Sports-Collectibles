@@ -38,9 +38,10 @@ function Products() {
       <h2>Products</h2>
       {products.map((product) => (
         <div key={product.id}>
-          <h3>{product.name}</h3>
+          <h3 className="productName">{product.name}</h3>
           <p>{product.description}</p>
-          <p>Price: {product.price}</p>
+          {/* <img>{product.image}</img> */}
+          <p className= "price" >Price: ${product.price}</p>
         </div>
       ))}
     </div>
