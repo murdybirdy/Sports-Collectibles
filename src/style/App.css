@@ -36,6 +36,7 @@ background-attachment:fixed;
  animation: textclip 2s linear infinite;
  display: inline-block;
      font-size: 130px;
+     padding-bottom: 10px;
 }
 
 @keyframes textclip {
@@ -101,10 +102,20 @@ background-attachment:fixed;
   background-color: burlywood;
   background-size: 200px;
   text-align: center;
+  border-radius: 25px;
 }
 .productName{
   background-color: burlywood;
   text-align: center;
+  border-radius: 25px;
+}
+.productsTitle{
+  background-color: burlywood;
+  text-align: center;
+  border-radius: 25px;
+  border-color: whitesmoke;
+  border-style: groove;
+  
 }
 
 
