@@ -1,6 +1,6 @@
 const client = require('./client');
 
-async function shoppingCart(userId) {
+async function userShoppingCart(userId) {
   try{
     if (userId) {
       const { rows } = await client.query(`
@@ -21,9 +21,10 @@ async function shoppingCart(userId) {
     console.log("error getting cart by user", error)
     throw error;
   }
+
 }
 
-async function addToCart(userId, productId, quantity){
+async function addToCart({userId, productId, quantity}){
   try {
     if(userId) {
       const { rows: [addProduct] } = await client.query(`
@@ -38,30 +39,27 @@ async function addToCart(userId, productId, quantity){
       throw new Error("User must be logged in to add items to cart");
     }
 
-  } catch (error){
+  } catch (error) {
     console.log("error adding to cart", error)
     throw error;
   }
 }
 
-async function deleteFromCart(userId, productId){
-    try {
-        if (userId){
-            const {rows: deleteProduct} = await client.query(`
-                DELETE FROM cart
-                WHERE userId = $1 AND productId = $2 
-                `, [userId, productId]);
-                return deleteProduct;
-        }else{
-            throw new Error ("User must be logged in to delete items");
-        }
-    }catch (error){
-        console.log("error deleting from cart", error)
-        throw error;
-    }
+async function deleteFromCart(cartId){
+  try {
+    await client.query(`
+      DELETE FROM cart
+      WHERE id = $1
+      RETURNING *;
+    `, [cartId]);
+
+  } catch (error) {
+    console.log("error deleting from cart", error)
+    throw error;
+  }
 }
 
-async function updateCart( userId, productId, updatedQuantity ){
+async function updateCart( userId, productId, updatedQuantity ){ // is this needed? I'm thinking that quantity will need to be updated in the front-end by counting each productId
     try {
         if (userId){
             const {rows: updateProduct } = await client.query(
@@ -80,7 +78,7 @@ async function updateCart( userId, productId, updatedQuantity ){
 }
 
 
-async function getCartByUser( userId ) {
+async function getCartByUser(userId) {
   try {
     const { rows } = await client.query(/*sql*/`
       SELECT cart.*, products.name, products.category, products.description, products.price
@@ -94,6 +92,21 @@ async function getCartByUser( userId ) {
 
   } catch (error) {
     console.log("Error getting cart by user!");
+    throw error;
+  }
+}
+
+async function showAllCartItems() {
+  try {
+    const { rows } = await client.query(`
+      SELECT *
+      FROM cart;
+    `);
+
+    return rows;
+
+  } catch (error) {
+    console.log("Error showing all cart items!");
     throw error;
   }
 }
@@ -113,10 +126,11 @@ async function getCartByUser( userId ) {
 //1.........prod2.........cart1
 //1.........prod1.........cart2
 
-    module.exports ={
-        shoppingCart, 
-        addToCart, 
-        deleteFromCart,
-        updateCart,
-        getCartByUser
-    }
+module.exports ={
+    userShoppingCart, 
+    addToCart, 
+    deleteFromCart,
+    updateCart,
+    getCartByUser,
+    showAllCartItems
+}

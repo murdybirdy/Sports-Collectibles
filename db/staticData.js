@@ -36,6 +36,24 @@ const usersData = [
   { id: 118, username: "r", password: "password" }
 ]
 
+ const cartData = [
+  { userId: 2, productId: 2 },
+  { userId: 3, productId: 3 },
+  { userId: 3, productId: 4 },
+  { userId: 5, productId: 5 },
+  { userId: 5, productId: 6 },
+  { userId: 5, productId: 7 },
+  { userId: 8, productId: 8 },
+  { userId: 10, productId: 9 },
+  { userId: 10, productId: 9 },
+  { userId: 11, productId: 10 },
+  { userId: 12, productId: 10 },
+  { userId: 7, productId: 11 },
+  { userId: 13, productId: 12 },
+  { userId: 14, productId: 13 },
+  { userId: 4, productId: 14 },
+]
+
 const productsList = () => {
   return [...productsData];
 };
@@ -44,9 +62,13 @@ const usersList = () => {
   return [...usersData];
 }
 
+const cartList = () => {
+  return [...cartData];
+}
+
 const find = (id) => {
   const post = data.find(post => post.id === Number(id));
   return {...post};
 }
 
-module.exports = { productsList: productsList, usersList: usersList, find: find };
+module.exports = { productsList: productsList, usersList: usersList, cartList: cartList, find: find };
