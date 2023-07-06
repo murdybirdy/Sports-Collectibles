@@ -32,6 +32,7 @@ const App = () => {
   return (
     <div className="app-container">
       <h1 className='frontPageTitle'>SPORTY</h1>
+      <h4 className='sportydiscription'>A Sports Collectibles Shop</h4>
       
       
 
