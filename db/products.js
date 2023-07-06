@@ -31,7 +31,7 @@ async function getProductById(id) {
   } 
 };
 
-async function attachProductsToCart(cart) {
+async function attachProductsToCart(cart) { // not needed for now, taking care of in addToCart function in cart.js
   try {
     const { rows: productInCart } = await client.query(/*sql*/`
       SELECT products.*

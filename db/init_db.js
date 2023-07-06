@@ -5,14 +5,21 @@ const {
   createUser,
   addToCart,
   getAllProducts,
+  getProductById,
   getCartByUser,
-  shoppingCart
+  userShoppingCart,
+  deleteFromCart,
+  showAllCartItems,
+  editProduct,
+  removeProduct
 } = require('./');
+
 const client = require('./client');
 
 const staticData = require('./staticData');
 const productsToCreate = staticData.productsList();
 const usersToCreate = staticData.usersList();
+const cartDataToCreate = staticData.cartList();
 
 async function buildTables() {
   try {
@@ -68,25 +75,49 @@ async function buildTables() {
 }
 
 async function populateInitialData() {
+  // create useful starting data by leveraging your
+  // Model.method() adapters to seed your db, for example:
+  // const user1 = await User.createUser({ ...user info goes here... })
+
   try {
+  // Products Tests:
     console.log("Starting to create products...");
     const products = await Promise.all(productsToCreate.map(addProduct));
     console.log("Products created:", products);
 
+    console.log("Displaying product by Id:", await getProductById(products[2].id));
+    console.log("Updated that product by Id", await editProduct({
+        id: products[2].id,
+        category: "test category",
+        price: 1000000000
+      }));
+
+    console.log("Testing removing a product by Id:");
+    await removeProduct(1);
+    console.log("Displaying all products after removing that one:", await getAllProducts());
+    
+
+
+  // Users Tests:
     console.log("Starting to create users...");
     const users = await Promise.all(usersToCreate.map(createUser));
     console.log("Users created:", users);
-
+    
+  // Cart Tests:
     console.log("Starting to add products to cart...");
-    const cart = [await addToCart(users[0].id, products[0].id, 1), await addToCart(users[0].id, products[0].id, 1)];
+    const cart = await Promise.all(cartDataToCreate.map(addToCart));
     console.log("Products added:", cart);
 
     console.log("Getting cart by userId...");
-    const userCart = await shoppingCart(users[0].id);
+    const userCart = await userShoppingCart(users[2].id);
     console.log("Cart:", userCart);
-    // create useful starting data by leveraging your
-    // Model.method() adapters to seed your db, for example:
-    // const user1 = await User.createUser({ ...user info goes here... })
+
+    console.log("Deleting item from cart...");
+    await deleteFromCart(cart[1].id);
+    const updatedCart = await showAllCartItems();
+    console.log("Updated Cart Items:", updatedCart);
+    console.log("Updated User Cart:", await userShoppingCart(users[2].id));
+
   } catch (error) {
     console.log("Error populating Initial Data!", error);
     throw error;
