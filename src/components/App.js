@@ -3,6 +3,13 @@ import React, { useState, useEffect } from 'react';
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
 import { getAPIHealth } from '../axios-services';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { 
+  Register,
+  Login,
+  Products,
+
+} from './';
 import '../style/App.css';
 
 const App = () => {
@@ -26,6 +33,15 @@ const App = () => {
     <div className="app-container">
       <h1>Hello, World!</h1>
       <p>API Status: {APIHealth}</p>
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<Products />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+
     </div>
   );
 };
