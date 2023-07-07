@@ -50,6 +50,7 @@ async function buildTables() {
           name VARCHAR(255) UNIQUE NOT NULL,
           category VARCHAR(255) NOT NULL,
           description VARCHAR(500) NOT NULL,
+          image_path VARCHAR(255),
           price INTEGER NOT NULL
         );
       `);
@@ -94,8 +95,8 @@ async function populateInitialData() {
         price: 1000000000
       }));
 
-    console.log("Testing removing a product by Id: 1");
-    await removeProduct(1);
+    // console.log("Testing removing a product by Id: 1");
+    // await removeProduct(1);
     console.log("Displaying all products after removing that one:", await getAllProducts());
     
 

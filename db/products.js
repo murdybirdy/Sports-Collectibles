@@ -42,14 +42,14 @@ async function attachProductsToCart(cart) { // not needed for now, taking care o
 }
 
 // For Administrator:
-async function addProduct({ name, category, description, price }) {
+async function addProduct({ name, category, description, price, image_path }) {
   try {
     const { rows: [ product ] } = await client.query(/*sql*/`
-      INSERT INTO products (name, category, description, price)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO products (name, category, description, price, image_path)
+      VALUES ($1, $2, $3, $4, $5)
       ON CONFLICT (name) DO NOTHING
       RETURNING *;
-    `, [ name, category, description, price ]);
+    `, [ name, category, description, price, image_path ]);
 
     return product;
 

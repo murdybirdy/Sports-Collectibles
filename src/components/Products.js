@@ -40,7 +40,7 @@ function Products() {
         <div key={product.id}>
           <h3 className="productName">{product.name}</h3>
           <p>{product.description}</p>
-          {/* <img>{product.image}</img> */}
+          <img src={product.image_path} height="500" width="500" />
           <p className= "price" >Price: ${product.price}</p>
         </div>
       ))}

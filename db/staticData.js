@@ -1,5 +1,6 @@
+import "./images"
 const productsData = [
-  { id: 1, price: 257, name: "Lorem Ipsum Dolor Sit Amet", description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit in dui eget dignissim. Etiam cursus ex eget iaculis luctus. Curabitur sagittis orci a tellus vulputate. Integer ut sapien massa. Nunc massa tortor, tincidunt vel sem sed, facilisis posuere leo. Donec sed massa feugiat odio rhoncus suscipit aliquet id.', category: 'Evazahr' , image: "sportybg.jpg", width: 100, height: 200,},
+  { id: 1, price: 257, name: "Lorem Ipsum Dolor Sit Amet", description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit in dui eget dignissim. Etiam cursus ex eget iaculis luctus. Curabitur sagittis orci a tellus vulputate. Integer ut sapien massa. Nunc massa tortor, tincidunt vel sem sed, facilisis posuere leo. Donec sed massa feugiat odio rhoncus suscipit aliquet id.', category: 'Evazahr' , image_path: "./images/baberuthsbat.jpg"},
   { id: 2, price: 221, name: "Integer Purus Leo", description: "Integer purus leo, condimentum ac sapien eu, consequat cursus dui. Maecenas ultricies velit nunc, vel ultrices ex euismod eget. Vivamus nisl nulla, aliquet sit amet nisl vel, consequat ultrices erat. Nam egestas eget tellus quis varius. Nunc quis nulla feugiat, facilisis ipsum et, egestas justo. Suspendisse scelerisque pretium lorem, eget.", category: "Druxium"},
   { id: 3, price: 198, name: "Blandit Vitae", description: "Fusce ac erat viverra, blandit lorem vitae, lobortis est. Phasellus posuere dui justo, at posuere tortor iaculis sit amet. Curabitur semper in velit id facilisis. Praesent iaculis justo magna, et convallis sem scelerisque at. Nullam pretium dictum porta. Donec vestibulum nunc urna, eu condimentum lorem dictum quis. Praesent mollis diam.", category: "Ophiane"},
   { id: 4, price: 171, name: "Odio Non Leo", description: "Aenean viverra pulvinar risus in scelerisque. Nunc quis odio non leo tempor pretium sed mollis mauris. Maecenas ultrices nec quam a cursus. Duis rhoncus lorem et placerat tincidunt. Morbi sed nibh aliquet, varius ipsum a, eleifend neque. Curabitur volutpat vitae augue sit amet condimentum. Nam suscipit dictum nisi, nec porta.", category: "Ritosh"},
@@ -14,16 +15,16 @@ const productsData = [
   { id: 13, price: 21, name: "Varius Magna: Turpis, Ac Tempus Dui Quis", description: "Cras cursus justo nec tortor sodales, tincidunt posuere massa pulvinar. Quisque neque ex, venenatis eget ante nec, volutpat ultrices elit. Pellentesque varius magna turpis, ac tempus dui convallis quis. Quisque porttitor semper purus quis scelerisque. Donec consectetur ullamcorper risus, nec consectetur ligula laoreet sit amet. Morbi non eros quam. In.", category: "Grikius"},
   { id: 14, price: 10, name: "Dignissim Mauris Ac Dapibus", description: "Phasellus dignissim mauris ac dapibus aliquet. Pellentesque congue nibh rutrum, fringilla arcu eu, dignissim est. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam non ligula eleifend, interdum erat a, ornare nulla. Nunc in aliquam ex, non maximus ipsum. Praesent varius metus vitae nibh rutrum.", category: "Avile"}
 ];
-function displayImage(src, width, height){
-  var image = document.createElement("image");
-  image.src=src;
-  image.width=width;
-  image.height=height;
-  document.body.appendChild(image)
-}
-const product = productsData[0];
-const {image,width, height} = product;
-displayImage(image, width, height);
+// function displayImage(src, width, height){
+//   var image = document.createElement("image");
+//   image.src=src;
+//   image.width=width;
+//   image.height=height;
+//   document.body.appendChild(image)
+// }
+// const product = productsData[0];
+// const {image,width, height} = product;
+// displayImage(image, width, height);
 
 const usersData = [
   { id: 101, username: "a", password: "password" },
