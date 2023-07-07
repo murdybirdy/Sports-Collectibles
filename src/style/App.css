@@ -115,6 +115,26 @@ background-attachment:fixed;
   border-radius: 25px;
   border-color: whitesmoke;
   border-style: groove;
+
+  
+}
+.images{
+  display: block;
+  border: whitesmoke;
+  border-radius: 25px;
+  height: 150px;
+  width: 175px;
+  margin-left:auto;
+  margin-right:auto;
+  
+}
+.productContainer{
+  background: #5350f7;
+  border-radius: 25px;
+  border-style: groove;
+  display: block;
+  width: 750px;
+  border-width: 25px;
   
 }
 

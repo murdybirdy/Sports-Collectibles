@@ -34,13 +34,13 @@ function Products() {
   }
 
   return (
-    <div>
+    <div className="productContainer">
       <h2 className="productsTitle"> Products</h2>
       {products.map((product) => (
         <div key={product.id}>
           <h3 className="productName">{product.name}</h3>
           <p>{product.description}</p>
-          <img src={product.image_path} height="500" width="500" />
+          <img className="images" src={product.image_path} height="500" width="300" />
           <p className= "price" >Price: ${product.price}</p>
         </div>
       ))}
