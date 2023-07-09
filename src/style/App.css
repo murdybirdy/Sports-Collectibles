@@ -1,20 +1,62 @@
 *{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body{
+  min-height: 100vh;
+  background: #1d037d;
 }
 
 .app-container {
+  
+position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-/* background-image: url(sportybg.jpg); */
-background-color: rgb(75, 83, 83);
-background-size: 100vw 100vh;
-background-attachment:fixed;
+  overflow: hidden;
+
+}
+.bubbles{
+  position: relative;
+  display: flex;
+}
+.bubbles span{
+position: relative;
+width: 30px;
+height: 30px;
+background: lightskyblue;
+margin: 0 4px;
+border-radius: 50%;
+box-shadow: 0 0 0 10px  blue,
+0 0 50px red,
+0 0 100px purple;
+animation: animate 15s linear infinite;
+animation-duration: calc(45s / var(--i));
+} 
+.bubbles span:nth-child(even){
+  background-color: magenta;
+  box-shadow: 0 0 0 10px blue,
+  0 0 50px magenta,
+  0 0 100px magenta,
+
 }
 
+@keyframes animate
+{
+  0% 
+  {
+    transform: translateY(100vh) scale(0);
+  }
+    100%
+      {
+        transform: translateY(-10vh) scale(1);
+  }
+}
 
 .frontPageTitle{
   text-transform: uppercase;
@@ -25,6 +67,7 @@ background-attachment:fixed;
    #ff1361 67%,
    #fff800 100%
  );
+ 
  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
  background-size: auto auto;
  background-clip: border-box;
@@ -94,7 +137,7 @@ background-attachment:fixed;
 
 .sportydiscription{
   color: white;
-  font-size: 30px;
+  font-size: 50px;
   animation: lights 5s 750ms linear infinite;
 }
 .price{
@@ -110,6 +153,7 @@ background-attachment:fixed;
   border-radius: 25px;
 }
 .productsTitle{
+  display: grid;
   background-color: burlywood;
   text-align: center;
   border-radius: 25px;
@@ -123,19 +167,27 @@ background-attachment:fixed;
   border: whitesmoke;
   border-radius: 25px;
   height: 150px;
-  width: 175px;
+  width: 200px;
   margin-left:auto;
   margin-right:auto;
+  opacity: 100%;
   
 }
 .productContainer{
   background: #5350f7;
   border-radius: 25px;
   border-style: groove;
-  display: block;
+ margin: 30px;
   width: 750px;
   border-width: 25px;
   
+}
+.invProducts{
+  display:grid;
+  border-radius: 10px;
+  border-width: 7px;
+ 
+
 }
 
 
