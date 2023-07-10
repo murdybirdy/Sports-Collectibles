@@ -36,9 +36,12 @@ const App = () => {
       <h1 className='frontPageTitle'>SPORTY</h1>
       <h4 className='sportydiscription'>A Sports Collectibles Shop</h4>
       <div className="buttons">
-    <button className="loginBtn"> Login</button>
+        <>
+    <button className="loginBtn">
+      login</button>
     <button className="registerBtn">Register</button>
-    <button className="shoppingCart">Cart</button>
+    <button className="gg-shopping-cart"></button>
+    </>
     </div>
     
     

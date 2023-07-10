@@ -152,6 +152,7 @@ animation-duration: calc(45s / var(--i));
 .buttons{
 margin-left: 710px;
 display: flex;
+margin-right:0;
 
 }
 .loginBtn{
@@ -162,9 +163,11 @@ display: flex;
   font-size: 35px;
   border-radius: 10px;
 }
-.shoppingCart{
-  font-size:35px;
-  border-radius: 10px;
+.gg-shopping-cart{
+height:50px;
+width: 50px;
+size: 50px;
+margin-right:0;
 }
 .sportydiscription{
   color: white;
