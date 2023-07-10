@@ -153,6 +153,8 @@ animation-duration: calc(45s / var(--i));
 margin-left: 710px;
 display: flex;
 margin-right:0;
+position: sticky;
+float: right;
 
 }
 .loginBtn{
