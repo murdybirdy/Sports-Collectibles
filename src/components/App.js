@@ -33,22 +33,17 @@ const App = () => {
   return (
     <div className="app-container">
       <nav>
-      <h1 className='frontPageTitle'>SPORTY</h1>
-      <h4 className='sportydiscription'>A Sports Collectibles Shop</h4>
-      <div className="buttons">
-        <>
-    <button className="loginBtn">
-      login</button>
-    <button className="registerBtn">Register</button>
-    <button className="gg-shopping-cart"></button>
-    </>
-    </div>
-    
-    
+        <h1 className='frontPageTitle'>SPORTY</h1>
+        <h4 className='sportydiscription'>A Sports Collectibles Shop</h4>
+        <div className="buttons">
+          <>
+            <button className="loginBtn">login</button>
+            <button className="registerBtn">Register</button>
+            <button className="gg-shopping-cart"></button>
+          </>
+        </div>
       </nav>
       
-      
-
       <Router>
         <Routes>
           <Route path="/" element={<Products />} />
