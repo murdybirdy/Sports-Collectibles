@@ -118,4 +118,10 @@ background-attachment:fixed;
   
 }
 
+.productsPage {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #44107a;
+}
 

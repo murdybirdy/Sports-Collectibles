@@ -34,7 +34,7 @@ function Products() {
   }
 
   return (
-    <div>
+    <div className="productsPage">
       <h2 className="productsTitle"> Products</h2>
       {products.map((product) => (
         <div key={product.id}>

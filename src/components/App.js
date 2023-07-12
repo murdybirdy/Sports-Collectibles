@@ -33,7 +33,7 @@ const App = () => {
     <div className="app-container">
       <h1 className='frontPageTitle'>SPORTY</h1>
       <h4 className='sportydiscription'>A Sports Collectibles Shop</h4>
-      
+      <img src="/images/sportybg.jpg" height="500" width="500" />
       
 
       <Router>
