@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom'; 
+ 
+
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
 import { getAPIHealth } from '../axios-services';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { 
   Register,
   Login,
@@ -31,28 +32,28 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app-container">
-      <nav>
-        <h1 className='frontPageTitle'>SPORTY</h1>
-        <h4 className='sportydiscription'>A Sports Collectibles Shop</h4>
-        <div className="buttons">
-          <>
-            <button className="loginBtn">login</button>
-            <button className="registerBtn">Register</button>
-            <button className="gg-shopping-cart"></button>
-          </>
-        </div>
-      </nav>
-      
-      <Router>
-        <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </Router>
-
-    </div>
+<Router>
+   <div className='app-container'>
+    <nav>
+     <h1 className="frontPageTitle">SPORTY</h1>
+     <h4 className="sportydiscription">A Sports Collectibles Shop</h4>
+     <div className="buttons">
+      <>
+       <Link to="/login" className="loginBtn">Login</Link>
+       <Link to="/register" className="registerBtn">Register</Link>
+       <button className="gg-shopping-cart"></button>
+      </>
+     </div>
+    </nav>
+    <Routes>
+     <Route path="/" element={<Products />} />
+     <Route path="/register" element={<Register />} />
+     <Route path="/login" element={<Login />} />
+    </Routes>
+   </div>
+  </Router>
+    
+  
   );
 };
 
