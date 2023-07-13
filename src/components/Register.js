@@ -37,26 +37,26 @@ function Register() {
 
   return (
     <div>
-      <h2>Register</h2>
+      <h2 className='registerTitle'>Register</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Username:</label>
-          <input
+          <label className="UserName">Username:</label>
+          <input className="inputUserName"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>
-          <label>Password:</label>
-          <input
+          <label className="PassWord">Password:</label>
+          <input className='inputPassWord'
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         {error && <p>{error}</p>}
-        <button type="submit" disabled={isLoading}>
+        <button className="loginButton" type="submit" disabled={isLoading}>
           {isLoading ? 'Loading...' : 'Register'}
         </button>
       </form>

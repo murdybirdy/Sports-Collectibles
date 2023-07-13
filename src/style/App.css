@@ -163,10 +163,10 @@ display: flex;
 justify-content: center;
 align-items: center;
 background-color: burlywood;
-height:200px;
+height:210px;
 border: solid aqua;
 border-radius: 15px;
-margin-bottom: 5px;
+
 }
 .gg-shopping-cart{
   height: 35px;
@@ -301,6 +301,7 @@ row-gap: 25px;
   margin-bottom: 5px;
   animation: lights 5s 750ms linear infinite;
   background-color: #5350f7;
+  cursor:pointer;
 }
 
 .productsPage {
@@ -310,3 +311,77 @@ row-gap: 25px;
 
 }
 
+.loginTitle{
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.UserName{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+}
+.PassWord{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+}
+.inputPassWord{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+width:500px;
+}
+.inputUserName{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.loginButton{
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  border: solid rgb(123, 123, 228);
+  border-width: 5px;
+  border-style: groove;
+}
+.registerTitle{
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+margin-bottom: 25px;
+}
