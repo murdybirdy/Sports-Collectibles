@@ -39,6 +39,7 @@ const App = () => {
      <h4 className="sportydiscription">A Sports Collectibles Shop</h4>
      <div className="buttons">
       <>
+      <Link to="/" className="gg-home"></Link>
        <Link to="/login" className="loginBtn">Login</Link>
        <Link to="/register" className="registerBtn">Register</Link>
        <button className="gg-shopping-cart"></button>

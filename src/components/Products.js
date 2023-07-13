@@ -34,17 +34,18 @@ function Products() {
   }
 
   return (
-    <div className="productContainer">
-      <h2 className="productsTitle"> Products</h2>
+    <><h2 className="productsTitle"> Product Inventory</h2><div className="productContainer">
+      
       {products.map((product) => (
-        <div className= "invProducts"key={product.id}>
+        <div className="invProducts" key={product.id}>
           <h3 className="productName">{product.name}</h3>
-          <p>{product.description}</p>
+          <p className= "productDiscription">{product.description}</p>
           <img className="images" src={product.image_path} height="500" width="300" />
-          <p className= "price" >Price: ${product.price}</p>
+          <p className="price">Price: ${product.price}</p>
+          <button className="addToCart">Add To Cart</button>
         </div>
       ))}
-    </div>
+    </div></>
   );
 }
 
