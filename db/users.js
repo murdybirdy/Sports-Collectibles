@@ -48,8 +48,8 @@ async function getUserById(id) {
 }
 
 async function createUser({ username, password }) {
-  const SALT_COUNT = 10;
-  const hashedPassword = await bcrypt.hash(password, SALT_COUNT);
+  
+ 
 
   try {
     const query =
@@ -57,7 +57,7 @@ async function createUser({ username, password }) {
        VALUES ($1, $2)
        ON CONFLICT (username) DO NOTHING
        RETURNING *;`;
-    const values = [ username, hashedPassword ];
+    const values = [ username, password ];
     const result = await client.query(query, values);
 
     return result.rows[0];
