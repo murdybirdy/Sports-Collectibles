@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,11 +22,16 @@ function Login() {
         },
         body: JSON.stringify({ username, password }),
       });
-
+      console.log(response);
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         // Login successful, you can redirect or perform additional actions
-        console.log('Login successful:', data);
+        setToken(data.token);
+        window.localStorage.setItem("token", data.token);
+        window.localStorage.setItem("currentUser",data.user);
+        navigate("/");
+
       } else {
         const data = await response.json();
         setError(data.error);

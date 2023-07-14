@@ -16,6 +16,7 @@ import '../style/App.css';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -48,8 +49,8 @@ const App = () => {
     </nav>
     <Routes>
      <Route path="/" element={<Products />} />
-     <Route path="/register" element={<Register />} />
-     <Route path="/login" element={<Login />} />
+     <Route path="/register" element={<Register token={token} setToken={setToken} />} />
+     <Route path="/login" element={<Login setToken={setToken} />} />
     </Routes>
    </div>
   </Router>
