@@ -48,8 +48,6 @@ async function getUserById(id) {
 }
 
 async function createUser({ username, password }) {
-  
- 
 
   try {
     const query =
