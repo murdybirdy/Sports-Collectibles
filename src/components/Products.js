@@ -4,6 +4,7 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedProduct, setSelectedProducts] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -24,13 +25,30 @@ function Products() {
 
     fetchProducts();
   }, []);
-
+const handleViewProduct =(productId) => {
+  const selected = products.find((product)=> product.id === productId);
+  setSelectedProducts(selected);
+}
+const handleGoBack = ()=> {
+  setSelectedProducts(null)
+}
   if (isLoading) {
     return <p>Loading products...</p>;
   }
 
   if (error) {
     return <p>{error}</p>;
+  }
+  if (selectedProduct) {
+    return (
+      <div className="invProducts">
+        <h2 className="productName">{selectedProduct.name}</h2>
+        <p className= "productDiscription">{selectedProduct.description}</p>
+        <img className="images" src={selectedProduct.image_path} alt={selectedProduct.name} height="500" width="300" />
+        <p className="price">Price: ${selectedProduct.price}</p>
+       <button onClick={handleGoBack}> Back to Products</button>
+      </div>
+    );
   }
 
   return (
@@ -42,6 +60,7 @@ function Products() {
           <p className= "productDiscription">{product.description}</p>
           <img className="images" src={product.image_path} height="500" width="300" />
           <p className="price">Price: ${product.price}</p>
+          <button className="viewProduct"onClick={() => handleViewProduct(product.id)}> View Item </button>
           <button className="addToCart">Add To Cart</button>
         </div>
       ))}
