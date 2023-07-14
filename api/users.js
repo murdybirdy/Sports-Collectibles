@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt =require('bcrypt')
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const {
   getAllUsers,
   getUserByUsername, 
@@ -33,7 +35,7 @@ router.get('/:userId', async (req, res, next) => {
 
 // POST /api/users/register
 router.post('/register', async (req, res, next) => {
-    const { username, password } = req.body;
+    const { username, password, isAdmin } = req.body;
   
     try {
       const existingUser = await getUserByUsername(username);
@@ -45,10 +47,13 @@ router.post('/register', async (req, res, next) => {
   
       const newUser = await createUser({
         username,
-        password: hashedPassword
+        password: hashedPassword,
+        isAdmin
       });
   
-      res.status(201).json(newUser);
+      const token = jwt.sign({id: newUser.id, username: newUser.username}, process.env.JWT_SECRET);
+      res.status(201).json({message: "User created successfully!", user: newUser, token });
+
     } catch (error) {
       next(error);
     }
@@ -65,11 +70,16 @@ router.post('/login', async (req, res, next) => {
       }
 
       const passwordsMatch = await bcrypt.compare(password, user.password);
+      console.log(passwordsMatch)
       if (!passwordsMatch) {
         return res.status(401).json({ error: 'Invalid username or password' });
-      }
-  
-      res.status(200).json({ message: 'Login successful', user: user });
+      };
+
+      console.log("from api/user.js: user:", user);
+      console.log(process.env.JWT_SECRET);
+      const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET);
+      res.status(201).json({ message: 'Login successful', user: user, token });
+      
     } catch (error) {
       next(error);
     }

@@ -47,15 +47,15 @@ async function getUserById(id) {
   }
 }
 
-async function createUser({ username, password }) {
+async function createUser({ username, password, isAdmin }) {
 
   try {
     const query =
-      `INSERT INTO users (username, password)
-       VALUES ($1, $2)
+      `INSERT INTO users (username, password, "isAdmin")
+       VALUES ($1, $2, $3)
        ON CONFLICT (username) DO NOTHING
        RETURNING *;`;
-    const values = [ username, password ];
+    const values = [ username, password, isAdmin ];
     const result = await client.query(query, values);
 
     return result.rows[0];
