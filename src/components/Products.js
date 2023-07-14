@@ -29,6 +29,9 @@ const handleViewProduct =(productId) => {
   const selected = products.find((product)=> product.id === productId);
   setSelectedProducts(selected);
 }
+const handleGoBack = ()=> {
+  setSelectedProducts(null)
+}
   if (isLoading) {
     return <p>Loading products...</p>;
   }
@@ -38,12 +41,12 @@ const handleViewProduct =(productId) => {
   }
   if (selectedProduct) {
     return (
-      <div>
-        <h2>{selectedProduct.name}</h2>
-        <p>{selectedProduct.description}</p>
-        <img src={selectedProduct.image_path} alt={selectedProduct.name} height="500" width="300" />
-        <p>Price: ${selectedProduct.price}</p>
-        <button onClick={() => setSelectedProduct(null)}>Back to Products</button>
+      <div className="invProducts">
+        <h2 className="productName">{selectedProduct.name}</h2>
+        <p className= "productDiscription">{selectedProduct.description}</p>
+        <img className="images" src={selectedProduct.image_path} alt={selectedProduct.name} height="500" width="300" />
+        <p className="price">Price: ${selectedProduct.price}</p>
+       <button onClick={handleGoBack}> Back to Products</button>
       </div>
     );
   }
