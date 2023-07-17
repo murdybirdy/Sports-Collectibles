@@ -35,8 +35,9 @@ function Register({ setToken, setCurrentUser }) {
           console.log('Registration successful:', newUser);
           setToken(newUser.token);
           window.localStorage.setItem("token", newUser.token);
-          setCurrentUser(newUser);
-          window.localStorage.setItem("currentUser", newUser);
+          setCurrentUser(newUser.user);
+          window.localStorage.setItem("currentUser", newUser.user);
+          console.log(newUser);
           navigate("/");
   
         } else {

@@ -13,6 +13,7 @@ import {
 
 } from './';
 import '../style/App.css';
+import AddProduct from './AddProduct';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
@@ -34,9 +35,11 @@ const App = () => {
   }, []);
 
   function logout() {
-    setToken('');
+    setToken("");
+    setCurrentUser("");
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("currentUser");
+    window.location.href = "/";
   }  
 
   return (
@@ -60,9 +63,10 @@ const App = () => {
      </div>
     </nav>
     <Routes>
-     <Route path="/" element={<Products currentUser={currentUser} />} />
+     <Route path="/" element={<Products currentUser={currentUser} token={token} />} />
      <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser} />} />
      <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
+     <Route path="/addProduct" element={<AddProduct token={token} />} />
     </Routes>
    </div>
   </Router>
