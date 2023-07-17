@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-function Products() {
+function Products({ currentUser }) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProducts] = useState(null);
 
+  console.log(currentUser);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -47,6 +48,8 @@ const handleGoBack = ()=> {
         <img className="images" src={selectedProduct.image_path} alt={selectedProduct.name} height="500" width="300" />
         <p className="price">Price: ${selectedProduct.price}</p>
        <button onClick={handleGoBack}> Back to Products</button>
+       { currentUser.isAdmin ? <button>Delete Product</button> : null }
+       { currentUser.isAdmin ? <button>Edit Product</button> : null }
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Register({ setToken }) {
+function Register({ setToken, setCurrentUser }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -35,6 +35,7 @@ function Register({ setToken }) {
           console.log('Registration successful:', newUser);
           setToken(newUser.token);
           window.localStorage.setItem("token", newUser.token);
+          setCurrentUser(newUser);
           window.localStorage.setItem("currentUser", newUser);
           navigate("/");
   

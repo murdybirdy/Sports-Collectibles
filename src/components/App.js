@@ -17,6 +17,7 @@ import '../style/App.css';
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [token, setToken] = useState("");
+  const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -32,6 +33,12 @@ const App = () => {
     getAPIStatus();
   }, []);
 
+  function logout() {
+    setToken('');
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("currentUser");
+  }  
+
   return (
 <Router>
    <div className='app-container'>
@@ -40,17 +47,22 @@ const App = () => {
      <h4 className="sportydiscription">A Sports Collectibles Shop</h4>
      <div className="buttons">
       <>
-      <Link to="/products" className="gg-home"></Link>
-       <Link to="/login" className="loginBtn">Login</Link>
-       <Link to="/register" className="registerBtn">Register</Link>
+       <Link to="/" className="gg-home"></Link>
+       { token ? 
+         <Link to="/" className="loginBtn" onClick={ logout }>Logout</Link> : 
+         <Link to="/login" className="loginBtn">Login</Link>
+       }
+       { token ? 
+         ( currentUser.isAdmin ? <Link to="/addProduct" className="registerBtn">Add Product</Link> : null ) :
+         <Link to="/register" className="registerBtn">Register</Link> }
        <button className="gg-shopping-cart"></button>
       </>
      </div>
     </nav>
     <Routes>
-     <Route path="/" element={<Products />} />
-     <Route path="/register" element={<Register token={token} setToken={setToken} />} />
-     <Route path="/login" element={<Login setToken={setToken} />} />
+     <Route path="/" element={<Products currentUser={currentUser} />} />
+     <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser} />} />
+     <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
     </Routes>
    </div>
   </Router>
