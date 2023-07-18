@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-const AddProduct = ({ token }) => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [image_path, setImage_Path] = useState("");
+const EditProduct = ({ token, currentProduct }) => {
+  const { id, name, price, description, category, image_path } = currentProduct;
+
+  const [updatedName, setUpdatedName] = useState(name);
+  const [updatedPrice, setUpdatedPrice] = useState(price);
+  const [updatedDescription, setUpdatedDescription] = useState(description);
+  const [updatedCategory, setUpdatedCategory] = useState(category);
+  const [updatedImage_Path, setUpdatedImage_Path] = useState(image_path);
 
   const navigate = useNavigate();
 
-  const createProduct = async (product, token) => {
+  const updateProduct = async (productId, token, product) => {
     try {
-      const response = await fetch(`/api/products`, {
-        method: "POST",
+      const response = await fetch(`api/products/${productId}`, {
+        method: "PATCH",
         headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -22,7 +24,6 @@ const AddProduct = ({ token }) => {
           product
         )
       });
-
       const result = await response.json();
       console.log(result);
       return result;
@@ -34,34 +35,35 @@ const AddProduct = ({ token }) => {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const product = {
-      name: name,
-      price: price,
-      description: description,
-      category: category,
-      image_path: image_path
+      name: updatedName,
+      price: updatedPrice,
+      description: updatedDescription,
+      category: updatedCategory,
+      image_path: updatedImage_Path
     };
 
-    const results = await createProduct(product, token);
-    if (!results.error) {
-      alert("Product successfully added!");
-      navigate("/");
-    }
+    const results = await updateProduct(id, token, product);
 
+    if (!results.error) {
+      alert("Product successfully updated!");
+      navigate("/");
+    };
   };
 
   return (
     <div>
-      <h2>Add New Product</h2>
-      <form onSubmit={ handleSubmit }>
+      <form onSubmit={handleSubmit}>
+        <h2>Edit Product</h2>
         <fieldset>
           <div>
             <label>Name:</label>
             <input
               type="text"
               placeholder="Enter Name*"
-              value={ name }
-              onChange={(event) => { setName(event.target.value) }}
+              value={updatedName}
+              onChange={({target: {value}}) => {setUpdatedName(value)}}
               required
             />
           </div>
@@ -70,8 +72,8 @@ const AddProduct = ({ token }) => {
             <input
               type="number"
               placeholder="Enter Price*"
-              value={ price }
-              onChange={(event) => { setPrice(event.target.value) }}
+              value={ updatedPrice }
+              onChange={({target: {value}}) => { setUpdatedPrice(value) }}
               required
             />
           </div>
@@ -80,8 +82,8 @@ const AddProduct = ({ token }) => {
             <input
               type="text"
               placeholder="Enter Description*"
-              value={ description }
-              onChange={(event) => { setDescription(event.target.value) }}
+              value={ updatedDescription }
+              onChange={({target: {value}}) => { setUpdatedDescription(value) }}
               required
             />
           </div>
@@ -90,8 +92,8 @@ const AddProduct = ({ token }) => {
             <input
               type="text"
               placeholder="Enter Category*"
-              value={ category }
-              onChange={(event) => { setCategory(event.target.value) }}
+              value={ updatedCategory }
+              onChange={({target: {value}}) => { setUpdatedCategory(value) }}
               required
             />
           </div>
@@ -100,15 +102,15 @@ const AddProduct = ({ token }) => {
             <input
               type="text"
               placeholder="Enter File Path of image"
-              value={ image_path }
-              onChange={(event) => { setImage_Path(event.target.value) }}
+              value={ updatedImage_Path }
+              onChange={({target: {value}}) => { setUpdatedImage_Path(value) }}
             />
           </div>
-          <button type="submit">Add Product</button>
+          <button type="submit">Submit Changes</button>
         </fieldset>
       </form>
     </div>
   )
 }
 
-export default AddProduct;
+export default EditProduct;

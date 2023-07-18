@@ -10,6 +10,7 @@ import {
   Register,
   Login,
   Products,
+  EditProduct,
 
 } from './';
 import '../style/App.css';
@@ -19,6 +20,7 @@ const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [token, setToken] = useState("");
   const [currentUser, setCurrentUser] = useState("");
+  const [currentProduct, setCurrentProduct] = useState("");
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -43,35 +45,34 @@ const App = () => {
   }  
 
   return (
-<Router>
-   <div className='app-container'>
-    <nav>
-     <h1 className="frontPageTitle">SPORTY</h1>
-     <h4 className="sportydiscription">A Sports Collectibles Shop</h4>
-     <div className="buttons">
-      <>
-       <Link to="/" className="gg-home"></Link>
-       { token ? 
-         <Link to="/" className="loginBtn" onClick={ logout }>Logout</Link> : 
-         <Link to="/login" className="loginBtn">Login</Link>
-       }
-       { token ? 
-         ( currentUser.isAdmin ? <Link to="/addProduct" className="registerBtn">Add Product</Link> : null ) :
-         <Link to="/register" className="registerBtn">Register</Link> }
-       <button className="gg-shopping-cart"></button>
-      </>
-     </div>
-    </nav>
-    <Routes>
-     <Route path="/" element={<Products currentUser={currentUser} token={token} />} />
-     <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser} />} />
-     <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
-     <Route path="/addProduct" element={<AddProduct token={token} />} />
-    </Routes>
-   </div>
-  </Router>
-    
-  
+    <Router>
+      <div className='app-container'>
+        <nav>
+          <h1 className="frontPageTitle">SPORTY</h1>
+          <h4 className="sportydiscription">A Sports Collectibles Shop</h4>
+          <div className="buttons">
+            <>
+            <Link to="/" className="gg-home"></Link>
+            { token ? 
+              <Link to="/" className="loginBtn" onClick={ logout }>Logout</Link> : 
+              <Link to="/login" className="loginBtn">Login</Link>
+            }
+            { token ? 
+              ( currentUser.isAdmin ? <Link to="/addProduct" className="registerBtn">Add Product</Link> : null ) :
+              <Link to="/register" className="registerBtn">Register</Link> }
+            <button className="gg-shopping-cart"></button>
+            </>
+          </div>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Products currentUser={currentUser} token={token} setCurrentProduct={setCurrentProduct} />} />
+          <Route path="/register" element={<Register setToken={setToken} setCurrentUser={setCurrentUser} />} />
+          <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
+          <Route path="/addProduct" element={<AddProduct token={token} />} />
+          <Route path="/editProduct" element={<EditProduct token={token} currentProduct={currentProduct} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
