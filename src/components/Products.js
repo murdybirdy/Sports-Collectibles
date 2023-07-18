@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-function Products({ currentUser, token }) {
+function Products({ currentUser, token, setCurrentProduct }) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -61,6 +62,7 @@ function Products({ currentUser, token }) {
   if (error) {
     return <p>{error}</p>;
   }
+  
   if (selectedProduct) {
     return (
       <div className="invProducts">
@@ -70,7 +72,7 @@ function Products({ currentUser, token }) {
         <p className="price">Price: ${selectedProduct.price}</p>
        <button onClick={handleGoBack}> Back to Products</button>
        { currentUser.isAdmin ? <button onClick={() => handleDelete(selectedProduct.id, token)}>Delete Product</button> : null }
-       { currentUser.isAdmin ? <button>Edit Product</button> : null }
+       { currentUser.isAdmin ? <Link to="/editProduct"><button onClick={() => {setCurrentProduct(selectedProduct)}}>Edit Product</button></Link> : null }
       </div>
     );
   }
