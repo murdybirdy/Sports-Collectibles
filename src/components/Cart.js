@@ -42,7 +42,7 @@ function Cart({ cartItems, token, setCartItems, currentUser }) {
     <span className="cart-container">
       <h2>My Cart</h2>
       {cartItems.map((cartItem) => (
-        <div className="Cart">
+        <div className="cart">
           <img src={cartItem.image_path} />
           <h2>{cartItem.name}</h2>
           <button onClick={() => handleDelete(cartItem.id, token)}>Delete From Cart</button>
@@ -50,7 +50,7 @@ function Cart({ cartItems, token, setCartItems, currentUser }) {
         </div>
       ))}
       <h2>Total: $ {total}</h2>
-      <button onClick={() => navigate("/checkout")}>Checkout</button>
+      <button className="checkoutBtn"onClick={() => navigate("/checkout")}>Checkout</button>
     </span>
   )
 };
