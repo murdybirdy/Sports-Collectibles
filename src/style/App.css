@@ -386,26 +386,222 @@ animation-duration: calc(45s / var(--i));
   text-align: center;
   margin-bottom: 25px;
 }
+.editProducts{
 
-.Cart {
-  display: flex;
-  flex-direction: row;
-  font-size: medium;
-  justify-content: space-between;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
   background-color: burlywood;
-  width: 750px;
+  border-radius: 25px;
+  text-align: center;
+  margin-bottom: 25px;
 }
-
-.Cart > img {
-  height: 100px;
-  width: 100px;
-}
-
-.cart-container {
+.Editprice{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
   background-color: burlywood;
-  align-items: center;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+
+}
+.name{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.Ename{
+
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+
 }
 
-.checkout {
-  background-color: green;
+.Editdescription{
+
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+
+}
+.editCategory{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.filepath{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.submitButton{
+
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  border: solid rgb(123, 123, 228);
+  border-width: 5px;
+  border-style: groove;
+
+}
+.editProductsContainer{
+  border-radius: 25px;
+  border-style: groove;
+  border-color:rgb(20, 50, 223);
+  margin: 30px;
+  width: 1200px;
+  border-width: 25px;
+  padding: 20px;
+}
+
+.addProducts{
+  border-radius: 25px;
+  border-style: groove;
+  border-color:rgb(20, 50, 223);
+  margin: 30px;
+  width: 1200px;
+  border-width: 25px;
+  padding: 20px;
+}
+.addNewTitle{
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.addNewName{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.EnterNewName{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+
+.enterNewPrice{
+
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.inputNewPrice{
+
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.addNewDescription{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: burlywood;
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.inputNewDescription{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+}
+.inputCategory{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
+
+
+}
+.inputFilePath{
+  display: block;
+  margin: auto;
+  padding:10px;
+  animation: lights 5s 750ms linear infinite;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 25px;
+  text-align: center;
+  width:500px;
 }

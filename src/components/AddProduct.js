@@ -51,13 +51,13 @@ const AddProduct = ({ token }) => {
   };
 
   return (
-    <div>
-      <h2>Add New Product</h2>
+    <div className="addProducts">
+      <h2 className="addNewTitle">Add New Product</h2>
       <form onSubmit={ handleSubmit }>
         <fieldset>
           <div>
-            <label>Name:</label>
-            <input
+            <label className="addNewName">Name:</label>
+            <input className="EnterNewName"
               type="text"
               placeholder="Enter Name*"
               value={ name }
@@ -66,8 +66,8 @@ const AddProduct = ({ token }) => {
             />
           </div>
           <div>
-            <label>Price:</label>
-            <input
+            <label className="enterNewPrice"> Price:</label>
+            <input className="inputNewPrice"
               type="number"
               placeholder="Enter Price*"
               value={ price }
@@ -76,8 +76,8 @@ const AddProduct = ({ token }) => {
             />
           </div>
           <div>
-            <label>Description:</label>
-            <input
+            <label className="addNewDescription">Description:</label>
+            <input className="inputNewDescription"
               type="text"
               placeholder="Enter Description*"
               value={ description }
@@ -86,8 +86,8 @@ const AddProduct = ({ token }) => {
             />
           </div>
           <div>
-            <label>Category:</label>
-            <input
+            <label className="editCategory">Category:</label>
+            <input className="inputCategory"
               type="text"
               placeholder="Enter Category*"
               value={ category }
@@ -96,15 +96,15 @@ const AddProduct = ({ token }) => {
             />
           </div>
           <div>
-            <label>File Path:</label>
-            <input
+            <label className="filePath">File Path:</label>
+            <input className="inputFilePath"
               type="text"
               placeholder="Enter File Path of image"
               value={ image_path }
               onChange={(event) => { setImage_Path(event.target.value) }}
             />
           </div>
-          <button type="submit">Add Product</button>
+          <button className="submitButton" type="submit">Add Product</button>
         </fieldset>
       </form>
     </div>
