@@ -7,7 +7,30 @@ function Products({ currentUser, token, setCurrentProduct }) {
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProducts] = useState(null);
 
-  // console.log(currentUser);
+  const addItemToCart = async (userId, product) => {
+    console.log("From addItemToCart:", userId, product);
+    try {
+      const response = await fetch(`/api/cart/${userId}/${product.id}`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` 
+        },
+        body: JSON.stringify(
+          product
+        )
+      });
+
+      const result = await response.json();
+      console.log(result);
+      return result;
+
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
   const fetchProducts = async () => {
     try {
       const response = await fetch('/api/products');
@@ -62,7 +85,7 @@ function Products({ currentUser, token, setCurrentProduct }) {
   if (error) {
     return <p>{error}</p>;
   }
-  
+
   if (selectedProduct) {
     return (
       <div className="invProducts">
@@ -86,8 +109,8 @@ function Products({ currentUser, token, setCurrentProduct }) {
           <p className= "productDiscription">{product.description}</p>
           <img className="images" src={product.image_path} height="500" width="300" />
           <p className="price">Price: ${product.price}</p>
-          <button className="viewProduct"onClick={() => handleViewProduct(product.id)}> View Item </button>
-          <button className="addToCart">Add To Cart</button>
+          <button className="viewProduct" onClick={() => handleViewProduct(product.id)}> View Item </button>
+          <button className="addToCart" onClick={async () => await addItemToCart(currentUser.id, product)}>Add To Cart</button>
         </div>
       ))}
     </div></>

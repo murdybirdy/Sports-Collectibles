@@ -11,16 +11,18 @@ import {
   Login,
   Products,
   EditProduct,
-
+  AddProduct,
+  Cart,
+  Checkout
 } from './';
 import '../style/App.css';
-import AddProduct from './AddProduct';
 
 const App = () => {
   const [APIHealth, setAPIHealth] = useState('');
   const [token, setToken] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const [currentProduct, setCurrentProduct] = useState("");
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     // follow this pattern inside your useEffect calls:
@@ -42,7 +44,20 @@ const App = () => {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("currentUser");
     window.location.href = "/";
-  }  
+  }
+
+  const getCartItems = async () => {
+    try {
+      const response = await fetch(`/api/cart/${currentUser.id}`);
+      const result = await response.json();
+      console.log(result);
+      setCartItems(result);
+
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 
   return (
     <Router>
@@ -60,7 +75,7 @@ const App = () => {
             { token ? 
               ( currentUser.isAdmin ? <Link to="/addProduct" className="registerBtn">Add Product</Link> : null ) :
               <Link to="/register" className="registerBtn">Register</Link> }
-            <button className="gg-shopping-cart"></button>
+            <Link to="/cart"><button className="gg-shopping-cart" onClick={async () => getCartItems()}></button></Link>
             </>
           </div>
         </nav>
@@ -70,6 +85,8 @@ const App = () => {
           <Route path="/login" element={<Login setToken={setToken} setCurrentUser={setCurrentUser} />} />
           <Route path="/addProduct" element={<AddProduct token={token} />} />
           <Route path="/editProduct" element={<EditProduct token={token} currentProduct={currentProduct} />} />
+          <Route path="/cart" element={<Cart cartItems={cartItems} token={token} setCartItems={setCartItems} currentUser={currentUser} />} />
+          <Route path="/checkout" element={<Checkout cartItems={cartItems} />} />
         </Routes>
       </div>
     </Router>
