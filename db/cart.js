@@ -4,7 +4,7 @@ async function userShoppingCart(userId) {
   try{
     if (userId) {
       const { rows } = await client.query(`
-        SELECT cart.*, products.name, products.category, products.description, products.price
+        SELECT cart.*, products.name, products.category, products.description, products.price, products.image_path
         FROM cart
         INNER JOIN products
         ON cart."productId" = products.id
@@ -24,14 +24,14 @@ async function userShoppingCart(userId) {
 
 }
 
-async function addToCart({userId, productId, quantity}){
+async function addToCart({userId, productId}){
   try {
     if(userId) {
       const { rows: [addProduct] } = await client.query(`
-        INSERT INTO cart ("userId", "productId", "quantity")
-        VALUES ($1, $2, $3)
+        INSERT INTO cart ("userId", "productId")
+        VALUES ($1, $2)
         RETURNING *
-      `, [userId, productId, quantity]);
+      `, [userId, productId]);
 
       return addProduct;
 

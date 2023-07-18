@@ -60,8 +60,7 @@ async function buildTables() {
         CREATE TABLE cart (
           id SERIAL PRIMARY KEY,
           "userId" INTEGER REFERENCES users(id),
-          "productId" INTEGER REFERENCES products(id),
-          quantity INTEGER
+          "productId" INTEGER REFERENCES products(id)
         );
       `);
 

@@ -386,3 +386,26 @@ animation-duration: calc(45s / var(--i));
   text-align: center;
   margin-bottom: 25px;
 }
+
+.Cart {
+  display: flex;
+  flex-direction: row;
+  font-size: medium;
+  justify-content: space-between;
+  background-color: burlywood;
+  width: 750px;
+}
+
+.Cart > img {
+  height: 100px;
+  width: 100px;
+}
+
+.cart-container {
+  background-color: burlywood;
+  align-items: center;
+}
+
+.checkout {
+  background-color: green;
+}
