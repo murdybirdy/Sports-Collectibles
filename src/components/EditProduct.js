@@ -52,14 +52,15 @@ const EditProduct = ({ token, currentProduct }) => {
     };
   };
 
+  
   return (
-    <div>
+    <div className="editProductsContainer">
       <form onSubmit={handleSubmit}>
-        <h2>Edit Product</h2>
+        <h2 className="editProducts">Edit Product</h2>
         <fieldset>
           <div>
-            <label>Name:</label>
-            <input
+            <label className="name">Name:</label>
+            <input className="Ename"
               type="text"
               placeholder="Enter Name*"
               value={updatedName}
@@ -68,8 +69,8 @@ const EditProduct = ({ token, currentProduct }) => {
             />
           </div>
           <div>
-            <label>Price:</label>
-            <input
+            <label className="Editprice">Price:</label>
+            <input className="Ename"
               type="number"
               placeholder="Enter Price*"
               value={ updatedPrice }
@@ -78,8 +79,8 @@ const EditProduct = ({ token, currentProduct }) => {
             />
           </div>
           <div>
-            <label>Description:</label>
-            <input
+            <label className="Editdescription">Description:</label>
+            <input className="Ename"
               type="text"
               placeholder="Enter Description*"
               value={ updatedDescription }
@@ -88,8 +89,8 @@ const EditProduct = ({ token, currentProduct }) => {
             />
           </div>
           <div>
-            <label>Category:</label>
-            <input
+            <label className="editCategory">Category:</label>
+            <input className="Ename"
               type="text"
               placeholder="Enter Category*"
               value={ updatedCategory }
@@ -98,15 +99,15 @@ const EditProduct = ({ token, currentProduct }) => {
             />
           </div>
           <div>
-            <label>File Path:</label>
-            <input
+            <label className="filepath">File Path:</label>
+            <input className="Ename"
               type="text"
               placeholder="Enter File Path of image"
               value={ updatedImage_Path }
               onChange={({target: {value}}) => { setUpdatedImage_Path(value) }}
             />
           </div>
-          <button type="submit">Submit Changes</button>
+          <button className="submitButton" type="submit">Submit Changes</button>
         </fieldset>
       </form>
     </div>

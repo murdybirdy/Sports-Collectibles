@@ -7,7 +7,7 @@ function Products({ currentUser, token, setCurrentProduct }) {
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProducts] = useState(null);
 
-  console.log(currentUser);
+  // console.log(currentUser);
   const fetchProducts = async () => {
     try {
       const response = await fetch('/api/products');
