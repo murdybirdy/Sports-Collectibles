@@ -657,14 +657,17 @@ animation-duration: calc(45s / var(--i));
 }
 .cart-container{
   display: grid;
-  margin: auto;
-  padding:10px;
-  animation: lights 5s 750ms linear infinite;
-  margin-bottom: 10px;
+ border: solid blue;
+  border-radius: 10px;
+  border-width: 10px;
+  border-style: groove;
   background-color: burlywood;
-  border-radius: 25px;
-  text-align: center;
-  width:500px;
+  overflow-x: 0;
+  margin-bottom: 25px;
+ margin: 20px;
+ justify-content: center;
+ align-items: center;
+ cursor: pointer;
 }
 .checkoutBtn{
   margin: auto;
