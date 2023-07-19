@@ -647,12 +647,14 @@ animation-duration: calc(45s / var(--i));
   border-style: groove;
   border-color:rgb(20, 50, 223);
   margin: 30px;
-  width: 1200px;
+  width: 750px;
   border-width: 25px;
   overflow-x: auto;
   display:block;
   grid-template-columns: auto auto auto ;
   row-gap: 10px;
+  justify-content: center;
+ align-items: center;
   
 }
 .cart-container{
