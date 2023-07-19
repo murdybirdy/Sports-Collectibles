@@ -643,20 +643,20 @@ animation-duration: calc(45s / var(--i));
 
 .cart{
   background: #5350f7;
-  border-radius: 25px;
+  border-radius: 20px;
   border-style: groove;
   border-color:rgb(20, 50, 223);
   margin: 30px;
   width: 1200px;
   border-width: 25px;
   overflow-x: auto;
-  display:grid;
+  display:block;
   grid-template-columns: auto auto auto ;
-  row-gap: 25px;
-  padding: 20px;
+  row-gap: 10px;
+  
 }
 .cart-container{
-  display: block;
+  display: flex;
   margin: auto;
   padding:10px;
   animation: lights 5s 750ms linear infinite;

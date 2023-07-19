@@ -33,7 +33,7 @@
     "react-scripts": "^5.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
+    "nodemon": "^2.0.22",
     "supertest": "^6.2.1"
   },
   "proxy": "http://localhost:4000",
