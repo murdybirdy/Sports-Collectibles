@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 // getAPIHealth is defined in our axios-services directory index.js
 // you can think of that directory as a collection of api adapters
 // where each adapter fetches specific info from our express server's /api route
-import { getAPIHealth } from '../axios-services';
+import { getAPIHealth, getCartItemsByUser } from '../axios-services';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { 
   Register,
@@ -47,16 +47,7 @@ const App = () => {
   }
 
   const getCartItems = async () => {
-    try {
-      const response = await fetch(`/api/cart/${currentUser.id}`);
-      const result = await response.json();
-      console.log(result);
-      setCartItems(result);
-
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
+    setCartItems(await getCartItemsByUser(currentUser.id));
   }
 
   return (

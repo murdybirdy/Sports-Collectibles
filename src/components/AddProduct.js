@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { createProduct } from '../axios-services';
 
 const AddProduct = ({ token }) => {
   const [name, setName] = useState("");
@@ -9,28 +10,6 @@ const AddProduct = ({ token }) => {
   const [image_path, setImage_Path] = useState("");
 
   const navigate = useNavigate();
-
-  const createProduct = async (product, token) => {
-    try {
-      const response = await fetch(`/api/products`, {
-        method: "POST",
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(
-          product
-        )
-      });
-
-      const result = await response.json();
-      console.log(result);
-      return result;
-
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   async function handleSubmit(event) {
     event.preventDefault();

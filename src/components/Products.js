@@ -1,45 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { addItemToCart, getAllProducts, deleteProduct } from '../axios-services';
 
 function Products({ currentUser, token, setCurrentProduct }) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedProduct, setSelectedProducts] = useState(null);
-
-  const addItemToCart = async (userId, product) => {
-    console.log("From addItemToCart:", userId, product);
-    try {
-      const response = await fetch(`/api/cart/${userId}/${product.id}`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
-        },
-        body: JSON.stringify(
-          product
-        )
-      });
-
-      const result = await response.json();
-      console.log(result);
-      return result;
-
-    } catch (error) {
-      console.log(error);
-      throw error;
-    }
-  }
+  const navigate = useNavigate();
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('/api/products');
-      if (response.ok) {
-        const productsData = await response.json();
-        setProducts(productsData);
-      } else {
-        setError('Failed to fetch products');
-      }
+      setProducts(await getAllProducts(token));
     } catch (error) {
       setError('An error occurred. Please try again.');
     } finally {
@@ -61,21 +33,9 @@ function Products({ currentUser, token, setCurrentProduct }) {
   };
 
   const handleDelete = async (productId, token) => {
-    try {
-      const response = await fetch(`/api/products/${productId}`, {
-        method: "DELETE",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-      });
-
-      setSelectedProducts(null);
-      fetchProducts();
-
-    } catch (err) {
-      console.error(err);
-    }
+    await deleteProduct(productId, token);
+    setSelectedProducts(null);
+    fetchProducts();
   };
 
   if (isLoading) {
@@ -95,7 +55,7 @@ function Products({ currentUser, token, setCurrentProduct }) {
         <p className="price">Price: ${selectedProduct.price}</p>
        <button onClick={handleGoBack}> Back to Products</button>
        { currentUser.isAdmin ? <button onClick={() => handleDelete(selectedProduct.id, token)}>Delete Product</button> : null }
-       { currentUser.isAdmin ? <Link to="/editProduct"><button onClick={() => {setCurrentProduct(selectedProduct)}}>Edit Product</button></Link> : null }
+       { currentUser.isAdmin ? <button onClick={() => { setCurrentProduct(selectedProduct), navigate("/editProduct") }}>Edit Product</button> : null }
       </div>
     );
   }
@@ -110,7 +70,7 @@ function Products({ currentUser, token, setCurrentProduct }) {
           <img className="images" src={product.image_path} height="500" width="300" />
           <p className="price">Price: ${product.price}</p>
           <button className="viewProduct" onClick={() => handleViewProduct(product.id)}> View Item </button>
-          <button className="addToCart" onClick={async () => await addItemToCart(currentUser.id, product)}>Add To Cart</button>
+          <button className="addToCart" onClick={async () => await addItemToCart(currentUser.id, product, token)}>Add To Cart</button>
         </div>
       ))}
     </div></>
