@@ -656,7 +656,7 @@ animation-duration: calc(45s / var(--i));
   
 }
 .cart-container{
-  display: flex;
+  display: grid;
   margin: auto;
   padding:10px;
   animation: lights 5s 750ms linear infinite;
