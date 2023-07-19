@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getUser } from '../axios-services';
 
 function Login({ setToken, setCurrentUser }) {
   const [username, setUsername] = useState('');
@@ -13,33 +14,14 @@ function Login({ setToken, setCurrentUser }) {
     e.preventDefault();
     setError(null);
     setIsLoading(true);
+    const data = await getUser(username, password);
 
-    try {
-      const response = await fetch('/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      console.log(response);
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        // Login successful, you can redirect or perform additional actions
-        setToken(data.token);
-        window.localStorage.setItem("token", data.token);
-        setCurrentUser(data.user);
-        window.localStorage.setItem("currentUser",data.user);
-        navigate("/");
-
-      } else {
-        const data = await response.json();
-        setError(data.error);
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    }
+    // Login successful, you can redirect or perform additional actions
+    setToken(data.token);
+    window.localStorage.setItem("token", data.token);
+    setCurrentUser(data.user);
+    window.localStorage.setItem("currentUser",data.user);
+    navigate("/");
 
     setIsLoading(false);
   };

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { updateProduct } from '../axios-services';
 
 const EditProduct = ({ token, currentProduct }) => {
   const { id, name, price, description, category, image_path } = currentProduct;
@@ -11,27 +12,6 @@ const EditProduct = ({ token, currentProduct }) => {
   const [updatedImage_Path, setUpdatedImage_Path] = useState(image_path);
 
   const navigate = useNavigate();
-
-  const updateProduct = async (productId, token, product) => {
-    try {
-      const response = await fetch(`api/products/${productId}`, {
-        method: "PATCH",
-        headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(
-          product
-        )
-      });
-      const result = await response.json();
-      console.log(result);
-      return result;
-
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   async function handleSubmit(event) {
     event.preventDefault();

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { addUser } from '../axios-services';
 
 function Register({ setToken, setCurrentUser }) {
   const [username, setUsername] = useState('');
@@ -19,37 +20,17 @@ function Register({ setToken, setCurrentUser }) {
 
     if (password !== confirmPassword) {
       alert("Passwords don't match!");
-    } else {
-      try {
-        const response = await fetch('/api/users/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password, isAdmin }),
-        });
-  
-        if (response.ok) {
-          const newUser = await response.json();
-          // Registration successful, you can redirect or show a success message
-          console.log('Registration successful:', newUser);
-          setToken(newUser.token);
-          window.localStorage.setItem("token", newUser.token);
-          setCurrentUser(newUser.user);
-          window.localStorage.setItem("currentUser", newUser.user);
-          console.log(newUser);
-          navigate("/");
-  
-        } else {
-          const data = await response.json();
-          setError(data.error);
-        }
-      } catch (error) {
-        setError('An error occurred. Please try again.');
-      }
-    }
 
-    setIsLoading(false);
+    } else {
+      const newUser = await addUser(username, password, isAdmin);
+      // Registration successful, you can redirect or show a success message
+      setToken(newUser.token);
+      window.localStorage.setItem("token", newUser.token);
+      setCurrentUser(newUser.user);
+      window.localStorage.setItem("currentUser", newUser.user);
+      navigate("/");
+      setIsLoading(false);
+    }
   };
 
   return (
