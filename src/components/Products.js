@@ -32,10 +32,6 @@ function Products({ currentUser, token, setCurrentProduct }) {
     fetchProducts();
   };
 
-  if (isLoading) {
-    return <p>Loading products...</p>;
-  }
-
   if (error) {
     return <p>{error}</p>;
   }
