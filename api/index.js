@@ -1,18 +1,18 @@
 const apiRouter = require('express').Router();
 
 apiRouter.get('/', (req, res, next) => {
-  res.send({
+  res({
     message: 'API is under construction!',
   });
 });
 
 apiRouter.get('/health', (req, res, next) => {
-  res.send({
+  res({
     healthy: true,
   });
 });
 apiRouter.get("/unknown", async (req, res, next)=> {
-  res.status(404).send({message:"404 not found"})
+  res.status(404)({message:"404 not found"})
 })
 
 //Router: user 
@@ -33,7 +33,7 @@ apiRouter.use('/cart', cartRouter);
 
 //** ADD ERROR HANDLER HERE */
 apiRouter.use((error, req, res, next) => {
-  res.send(error);
+  res(error);
 })
 
 // place your routers here
