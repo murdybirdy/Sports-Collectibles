@@ -18,9 +18,11 @@ import axios from 'axios';
   }
 */
 
+DATABASE_URL = "postgres://sporty_o60b_user:OiVRMDz7Him1zbOzS2xfolopNeglw4j6@dpg-cis6vdliuie5eb8l52o0-a.oregon-postgres.render.com/sporty_o60b"
+
 export async function getAPIHealth() {
   try {
-    const { data } = await axios.get('/api/health');
+    const { data } = await axios.get(`${DATABASE_URL}/api/health`);
     return data;
   } catch (err) {
     console.error(err);
@@ -32,7 +34,7 @@ export async function getAPIHealth() {
 
 export async function getCartItemsByUser(userId, token) {
   try {
-    const response = await fetch(`/api/cart/${userId}`, {
+    const response = await fetch(`${DATABASE_URL}/api/cart/${userId}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -51,7 +53,7 @@ export async function getCartItemsByUser(userId, token) {
 
 export async function deleteFromCart(itemId, token) {
   try {
-    const response = await fetch(`/api/cart/${itemId}`, {
+    const response = await fetch(`${DATABASE_URL}/api/cart/${itemId}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'appplication/json',
@@ -71,7 +73,7 @@ export async function deleteFromCart(itemId, token) {
 
 export async function addItemToCart(userId, product, token) {
   try {
-    const response = await fetch(`/api/cart/${userId}/${product.id}`, {
+    const response = await fetch(`${DATABASE_URL}/api/cart/${userId}/${product.id}`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -95,7 +97,7 @@ export async function addItemToCart(userId, product, token) {
   // Product functions
 export async function getAllProducts(token) {
   try {
-    const response = await fetch('/api/products', {
+    const response = await fetch(`${DATABASE_URL}/api/products`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
@@ -114,7 +116,7 @@ export async function getAllProducts(token) {
 
 export async function createProduct(product, token) {
   try {
-    const response = await fetch(`/api/products`, {
+    const response = await fetch(`${DATABASE_URL}/api/products`, {
       method: "POST",
       headers: {
       'Content-Type': 'application/json',
@@ -137,7 +139,7 @@ export async function createProduct(product, token) {
 
 export async function updateProduct(productId, token, product) {
   try {
-    const response = await fetch(`/api/products/${productId}`, {
+    const response = await fetch(`${DATABASE_URL}/api/products/${productId}`, {
       method: "PATCH",
       headers: {
       'Content-Type': 'application/json',
@@ -160,7 +162,7 @@ export async function updateProduct(productId, token, product) {
 
 export async function deleteProduct(productId, token) {
   try {
-    const response = await fetch(`/api/products/${productId}`, {
+    const response = await fetch(`${DATABASE_URL}/api/products/${productId}`, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
@@ -181,7 +183,7 @@ export async function deleteProduct(productId, token) {
   // User functions
 export async function getUser(username, password) {
   try {
-    const response = await fetch('/api/users/login', {
+    const response = await fetch(`${DATABASE_URL}/api/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -201,7 +203,7 @@ export async function getUser(username, password) {
 
 export async function addUser(username, password, isAdmin) {
   try {
-    const response = await fetch('/api/users/register', {
+    const response = await fetch(`${DATABASE_URL}/api/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
