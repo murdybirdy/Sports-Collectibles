@@ -10,13 +10,7 @@ function Products({ currentUser, token, setCurrentProduct }) {
   const navigate = useNavigate();
 
   const fetchProducts = async () => {
-    try {
-      setProducts(await getAllProducts(token));
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
+    setProducts(await getAllProducts(token));
   };
 
   useEffect(() => {
