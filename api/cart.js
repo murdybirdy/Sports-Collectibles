@@ -53,7 +53,7 @@ router.post('/:userId/:productId', async (req, res, next) => {
         productId: productId
       });
   
-      res.send(newItem);
+      res(newItem);
     } catch (error) {
       next(error);
     }
